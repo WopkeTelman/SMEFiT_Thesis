@@ -1,0 +1,245 @@
+result_ID: wprime_gwh050_mwp050_SMonly
+result_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/results/wprime_gwh050_mwp050/fits
+data_path: /data/theorie/wtelman/smefit_database/commondata_projections_L0
+theory_path: /data/theorie/wtelman/smefit_database/theory
+use_quad: false
+use_t0: true
+use_theory_covmat: true
+uv_couplings: false
+n_samples: 10000
+datasets:
+- name: FCCee_Wwidth
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Zdata
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ww_161GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ww_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ww_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Brw
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rc_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rmu_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rtau_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ee_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ee_Afb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_bb_Afb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_cc_Afb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_mumu_Afb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_tautau_Afb_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_sigmaHad_240GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rc_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rmu_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_Rtau_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ee_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_ee_Afb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_bb_Afb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_cc_Afb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_mumu_Afb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_tautau_Afb_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_sigmaHad_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_zh_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_WW_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_ZZ_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_aZ_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_aa_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_tautau_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_mumu_240GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_240_H_HADR
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_zh_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_WW_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_ZZ_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_aZ_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_aa_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_tautau_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_zh_mumu_365GeV
+  order: NLO_EW
+  theory_cov: aggressive
+- name: FCCee_365_H_HADR
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_vvh_WW_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_vvh_ZZ_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_vvh_aZ_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_vvh_aa_365GeV
+  order: LO
+  theory_cov: aggressive
+- name: FCCee_vvh_tautau_365GeV
+  order: LO
+  theory_cov: aggressive
+rge:
+  init_scale: 5000.0
+  obs_scale: dynamic
+  smeft_accuracy: integrate
+  yukawa: top
+  adm_QCD: false
+coefficients:
+  O3pQ3:
+    min: -1.0
+    max: 1.0
+  O3pl1:
+    min: -1.0
+    max: 1.0
+  O3pl2:
+    min: -1.0
+    max: 1.0
+  O3pl3:
+    min: -1.0
+    max: 1.0
+  OQQ1:
+    min: -1.0
+    max: 1.0
+  OQQ8:
+    min: -1.0
+    max: 1.0
+  OQl13:
+    min: -1.0
+    max: 1.0
+  OQl1M:
+    min: -1.0
+    max: 1.0
+  OQl23:
+    min: -1.0
+    max: 1.0
+  OQl2M:
+    min: -1.0
+    max: 1.0
+  OQl33:
+    min: -1.0
+    max: 1.0
+  OQl3M:
+    min: -1.0
+    max: 1.0
+  Obp:
+    min: -1.0
+    max: 1.0
+  Oll1111:
+    min: -1.0
+    max: 1.0
+  Oll1122:
+    min: -1.0
+    max: 1.0
+  Oll1133:
+    min: -1.0
+    max: 1.0
+  Oll1221:
+    min: -1.0
+    max: 1.0
+  Oll1331:
+    min: -1.0
+    max: 1.0
+  Oll2222:
+    min: -1.0
+    max: 1.0
+  Oll2233:
+    min: -1.0
+    max: 1.0
+  Oll2332:
+    min: -1.0
+    max: 1.0
+  Oll3333:
+    min: -1.0
+    max: 1.0
+  Op:
+    min: -1.0
+    max: 1.0
+  OpBox:
+    min: -1.0
+    max: 1.0
+  OpQM:
+    min: -1.0
+    max: 1.0
+  Otap:
+    min: -1.0
+    max: 1.0
+  Otp:
+    min: -1.0
+    max: 1.0

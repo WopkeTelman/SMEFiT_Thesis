@@ -1,0 +1,193 @@
+projections_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/projections/wprime_gwh050_mwp050
+commondata_path: /data/theorie/wtelman/smefit_database/commondata_projections_L0
+theory_path: /data/theorie/wtelman/smefit_database/theory
+datasets:
+- name: FCCee_Wwidth
+  order: LO
+- name: FCCee_Zdata
+  order: LO
+- name: FCCee_ww_161GeV
+  order: LO
+- name: FCCee_ww_240GeV
+  order: LO
+- name: FCCee_ww_365GeV
+  order: LO
+- name: FCCee_Brw
+  order: LO
+- name: FCCee_Rb_240GeV
+  order: LO
+- name: FCCee_Rc_240GeV
+  order: LO
+- name: FCCee_Rmu_240GeV
+  order: LO
+- name: FCCee_Rtau_240GeV
+  order: LO
+- name: FCCee_ee_240GeV
+  order: LO
+- name: FCCee_ee_Afb_240GeV
+  order: LO
+- name: FCCee_bb_Afb_240GeV
+  order: LO
+- name: FCCee_cc_Afb_240GeV
+  order: LO
+- name: FCCee_mumu_Afb_240GeV
+  order: LO
+- name: FCCee_tautau_Afb_240GeV
+  order: LO
+- name: FCCee_sigmaHad_240GeV
+  order: LO
+- name: FCCee_Rb_365GeV
+  order: LO
+- name: FCCee_Rc_365GeV
+  order: LO
+- name: FCCee_Rmu_365GeV
+  order: LO
+- name: FCCee_Rtau_365GeV
+  order: LO
+- name: FCCee_ee_365GeV
+  order: LO
+- name: FCCee_ee_Afb_365GeV
+  order: LO
+- name: FCCee_bb_Afb_365GeV
+  order: LO
+- name: FCCee_cc_Afb_365GeV
+  order: LO
+- name: FCCee_mumu_Afb_365GeV
+  order: LO
+- name: FCCee_tautau_Afb_365GeV
+  order: LO
+- name: FCCee_sigmaHad_365GeV
+  order: LO
+- name: FCCee_zh_240GeV
+  order: NLO_EW
+- name: FCCee_zh_WW_240GeV
+  order: NLO_EW
+- name: FCCee_zh_ZZ_240GeV
+  order: NLO_EW
+- name: FCCee_zh_aZ_240GeV
+  order: NLO_EW
+- name: FCCee_zh_aa_240GeV
+  order: NLO_EW
+- name: FCCee_zh_tautau_240GeV
+  order: NLO_EW
+- name: FCCee_zh_mumu_240GeV
+  order: NLO_EW
+- name: FCCee_240_H_HADR
+  order: LO
+- name: FCCee_zh_365GeV
+  order: NLO_EW
+- name: FCCee_zh_WW_365GeV
+  order: NLO_EW
+- name: FCCee_zh_ZZ_365GeV
+  order: NLO_EW
+- name: FCCee_zh_aZ_365GeV
+  order: NLO_EW
+- name: FCCee_zh_aa_365GeV
+  order: NLO_EW
+- name: FCCee_zh_tautau_365GeV
+  order: NLO_EW
+- name: FCCee_zh_mumu_365GeV
+  order: NLO_EW
+- name: FCCee_365_H_HADR
+  order: LO
+- name: FCCee_vvh_WW_365GeV
+  order: LO
+- name: FCCee_vvh_ZZ_365GeV
+  order: LO
+- name: FCCee_vvh_aZ_365GeV
+  order: LO
+- name: FCCee_vvh_aa_365GeV
+  order: LO
+- name: FCCee_vvh_tautau_365GeV
+  order: LO
+coefficients:
+  OpBox:
+    constrain: true
+    value: -0.00375
+  OpQM:
+    constrain: true
+    value: 0.0008333333333333333
+  O3pQ3:
+    constrain: true
+    value: -0.0008333333333333333
+  O3pl1:
+    constrain: true
+    value: -0.0008333333333333333
+  O3pl2:
+    constrain: true
+    value: -0.0008333333333333333
+  O3pl3:
+    constrain: true
+    value: -0.0008333333333333333
+  OQQ1:
+    constrain: true
+    value: 9.259259259259259e-05
+  OQQ8:
+    constrain: true
+    value: -0.0011111111111111111
+  Oll1111:
+    constrain: true
+    value: -0.0001388888888888889
+  Oll1122:
+    constrain: true
+    value: 0.0001388888888888889
+  Oll1133:
+    constrain: true
+    value: 0.0001388888888888889
+  Oll1221:
+    constrain: true
+    value: -0.0002777777777777778
+  Oll1331:
+    constrain: true
+    value: -0.0002777777777777778
+  Oll2222:
+    constrain: true
+    value: -0.0001388888888888889
+  Oll2233:
+    constrain: true
+    value: 0.0001388888888888889
+  Oll2332:
+    constrain: true
+    value: -0.0002777777777777778
+  Oll3333:
+    constrain: true
+    value: -0.0001388888888888889
+  OQl13:
+    constrain: true
+    value: -0.0011111111111111111
+  OQl1M:
+    constrain: true
+    value: 0.0011111111111111111
+  OQl23:
+    constrain: true
+    value: -0.0011111111111111111
+  OQl2M:
+    constrain: true
+    value: 0.0011111111111111111
+  OQl33:
+    constrain: true
+    value: -0.0011111111111111111
+  OQl3M:
+    constrain: true
+    value: 0.0011111111111111111
+  Obp:
+    constrain: true
+    value: -6.002165432052166e-05
+  Otp:
+    constrain: true
+    value: -0.002480703588615627
+  Otap:
+    constrain: true
+    value: -2.5559460452279553e-05
+  Op:
+    constrain: true
+    value: -0.0012938347743146458
+use_quad: true
+use_t0: false
+use_theory_covmat: false
+rge:
+  init_scale: 5000.0
+  obs_scale: dynamic
+  smeft_accuracy: integrate
+  yukawa: top
+  adm_QCD: false
