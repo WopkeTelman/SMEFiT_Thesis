@@ -189,29 +189,41 @@ def main():
     print(f"  Z-pole observables where FCC-ee has per-mille-level precision.")
 
     # ── Plot ──────────────────────────────────────────────────────────────────
-    fig, axes = plt.subplots(1, 2, figsize=(16, 5),
-                             gridspec_kw={"width_ratios": [3, 1]})
+    fig, ax = plt.subplots(1, 1, figsize=(14, 6))
+    fig.subplots_adjust(bottom=0.30)   # room for legend below x-axis labels
 
-    ax = axes[0]
     x     = np.arange(len(plot_ops))
     width = 0.38
 
     n_w = len(wp_only)
     n_s = len(shared)
 
-    ax.axvspan(-0.5,           n_w - 0.5,
-               color="#d0e8ff", alpha=0.35, zorder=0, label="W'-only")
-    ax.axvspan(n_w - 0.5,      n_w + n_s - 0.5,
-               color="#e0e0e0", alpha=0.50, zorder=0, label="Shared")
+    # Background bands: encode which operators belong to which model
+    ax.axvspan(-0.5,            n_w - 0.5,
+               color="#d0e8ff", alpha=0.35, zorder=0)
+    ax.axvspan(n_w - 0.5,       n_w + n_s - 0.5,
+               color="#e0e0e0", alpha=0.50, zorder=0)
     ax.axvspan(n_w + n_s - 0.5, len(plot_ops) - 0.5,
-               color="#ffe0d0", alpha=0.35, zorder=0, label="Z'-only")
+               color="#ffe0d0", alpha=0.35, zorder=0)
+
+    # Band labels inside the plot at the top, in matching colours
+    ymax = ax.get_ylim()[1]   # will be updated after bars; set after
+    for label, lo, hi, col in [
+        ("W'-only", -0.5,          n_w - 0.5,          "#1f77b4"),
+        ("Shared",   n_w - 0.5,    n_w + n_s - 0.5,   "#555555"),
+        ("Z'-only",  n_w + n_s - 0.5, len(plot_ops) - 0.5, "#d62728"),
+    ]:
+        mid = (lo + hi) / 2.0
+        ax.text(mid, 1.01, label, transform=ax.get_xaxis_transform(),
+                ha="center", va="bottom", fontsize=8.5, color=col,
+                style="italic", clip_on=False)
 
     ax.bar(x - width/2, n_wp_full, width, color="#1f77b4", zorder=3,
            label=fr"W' ($g_{{WH}}={g}$, $g_{{Wf}}={gWLf:.3f}$, "
-                 fr"$m_{{W'}}={mWp:.0f}$ TeV, $\sqrt{{\lambda}}={sigma_wp:.1f}$)")
+                 fr"$m_{{W'}}={mWp:.0f}$ TeV, $\sqrt{{\lambda_{{W'}}}}={sigma_wp:.1f}$)")
     ax.bar(x + width/2, n_zp_full, width, color="#d62728", zorder=3,
            label=fr"Z' ($g_{{ZH}}=g_{{Zl}}={g}$, "
-                 fr"$m_{{Z'}}={mZp:.0f}$ TeV, $\sqrt{{\lambda}}={sigma_zp:.1f}$)")
+                 fr"$m_{{Z'}}={mZp:.0f}$ TeV, $\sqrt{{\lambda_{{Z'}}}}={sigma_zp:.1f}$)")
 
     ax.axhline(0, color="black", lw=0.8)
     ax.set_xticks(x)
@@ -220,47 +232,20 @@ def main():
         rotation=45, ha="right", fontsize=9
     )
     ax.set_ylabel(
-        r"Fisher-gradient fingerprint $\,\tilde{n}_i = (Fc)_i\,/\,\|Fc\|$",
-        fontsize=10
-    )
-    ax.set_title(
-        fr"Operator fingerprint: W' vs Z' at FCC-ee  "
-        fr"($\cos\theta_\mathrm{{data}} = {cos_sim:.3f}$, "
-        fr"$\theta = {angle_deg:.1f}^\circ$)",
+        r"Fingerprint component $\hat{n}_i = (Fc)_i\,/\,\|Fc\|$",
         fontsize=11
     )
-    ax.legend(fontsize=8, loc="upper right")
+    ax.set_title(
+        r"Which operators does each model activate? — Fisher-gradient fingerprint at FCC-ee",
+        fontsize=12, pad=14
+    )
+    ax.legend(fontsize=9, loc="upper center",
+              bbox_to_anchor=(0.5, -0.30), ncol=2,
+              frameon=True, framealpha=0.9)
     ax.grid(axis="y", alpha=0.3, zorder=0)
     ax.set_xlim(-0.6, len(plot_ops) - 0.4)
 
-    # --- right: angle diagram ---
-    ax2 = axes[1]
-    theta = np.radians(angle_deg)
-    ax2.annotate("", xy=(np.cos(0), np.sin(0)), xytext=(0, 0),
-                 arrowprops=dict(arrowstyle="-|>", color="#1f77b4", lw=2.5))
-    ax2.annotate("", xy=(np.cos(theta), np.sin(theta)), xytext=(0, 0),
-                 arrowprops=dict(arrowstyle="-|>", color="#d62728", lw=2.5))
-    arc_t = np.linspace(0, theta, 60)
-    ax2.plot(0.4 * np.cos(arc_t), 0.4 * np.sin(arc_t), "k-", lw=1.2)
-    ax2.text(0.45 * np.cos(theta / 2), 0.45 * np.sin(theta / 2),
-             fr"$\theta={angle_deg:.0f}^\circ$", fontsize=11,
-             ha="center", va="center")
-    ax2.text(1.05, 0.0, r"W'", fontsize=11, color="#1f77b4",
-             ha="left", va="center")
-    ax2.text(np.cos(theta) + 0.05, np.sin(theta),
-             r"Z'", fontsize=11, color="#d62728", ha="left", va="center")
-    ax2.set_xlim(-1.3, 1.3)
-    ax2.set_ylim(-0.3, 1.3)
-    ax2.set_aspect("equal")
-    ax2.axis("off")
-    ax2.set_title(
-        fr"$\cos\theta = {cos_sim:.3f}$" + "\n"
-        r"(data space: $s = Kc$," + "\n"
-        r"$\cos\theta = s_W^\top C^{-1} s_Z / \sqrt{\lambda_W\lambda_Z}$)",
-        fontsize=9
-    )
-
-    plt.tight_layout()
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
 
     out_dir = PIPELINE / "results" / "fingerprint_comparison"
     out_dir.mkdir(parents=True, exist_ok=True)
