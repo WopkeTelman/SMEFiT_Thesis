@@ -1,0 +1,142 @@
+projections_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/projections/zprime_gzh050_mzp050
+commondata_path: /data/theorie/wtelman/smefit_database/commondata_projections_L0
+theory_path: /data/theorie/wtelman/smefit_database/theory
+datasets:
+- name: FCCee_Wwidth
+  order: LO
+- name: FCCee_Zdata
+  order: LO
+- name: FCCee_ww_161GeV
+  order: LO
+- name: FCCee_ww_240GeV
+  order: LO
+- name: FCCee_ww_365GeV
+  order: LO
+- name: FCCee_Brw
+  order: LO
+- name: FCCee_Rb_240GeV
+  order: LO
+- name: FCCee_Rc_240GeV
+  order: LO
+- name: FCCee_Rmu_240GeV
+  order: LO
+- name: FCCee_Rtau_240GeV
+  order: LO
+- name: FCCee_ee_240GeV
+  order: LO
+- name: FCCee_ee_Afb_240GeV
+  order: LO
+- name: FCCee_bb_Afb_240GeV
+  order: LO
+- name: FCCee_cc_Afb_240GeV
+  order: LO
+- name: FCCee_mumu_Afb_240GeV
+  order: LO
+- name: FCCee_tautau_Afb_240GeV
+  order: LO
+- name: FCCee_sigmaHad_240GeV
+  order: LO
+- name: FCCee_Rb_365GeV
+  order: LO
+- name: FCCee_Rc_365GeV
+  order: LO
+- name: FCCee_Rmu_365GeV
+  order: LO
+- name: FCCee_Rtau_365GeV
+  order: LO
+- name: FCCee_ee_365GeV
+  order: LO
+- name: FCCee_ee_Afb_365GeV
+  order: LO
+- name: FCCee_bb_Afb_365GeV
+  order: LO
+- name: FCCee_cc_Afb_365GeV
+  order: LO
+- name: FCCee_mumu_Afb_365GeV
+  order: LO
+- name: FCCee_tautau_Afb_365GeV
+  order: LO
+- name: FCCee_sigmaHad_365GeV
+  order: LO
+- name: FCCee_zh_240GeV
+  order: NLO_EW
+- name: FCCee_zh_WW_240GeV
+  order: NLO_EW
+- name: FCCee_zh_ZZ_240GeV
+  order: NLO_EW
+- name: FCCee_zh_aZ_240GeV
+  order: NLO_EW
+- name: FCCee_zh_aa_240GeV
+  order: NLO_EW
+- name: FCCee_zh_tautau_240GeV
+  order: NLO_EW
+- name: FCCee_zh_mumu_240GeV
+  order: NLO_EW
+- name: FCCee_240_H_HADR
+  order: LO
+- name: FCCee_zh_365GeV
+  order: NLO_EW
+- name: FCCee_zh_WW_365GeV
+  order: NLO_EW
+- name: FCCee_zh_ZZ_365GeV
+  order: NLO_EW
+- name: FCCee_zh_aZ_365GeV
+  order: NLO_EW
+- name: FCCee_zh_aa_365GeV
+  order: NLO_EW
+- name: FCCee_zh_tautau_365GeV
+  order: NLO_EW
+- name: FCCee_zh_mumu_365GeV
+  order: NLO_EW
+- name: FCCee_365_H_HADR
+  order: LO
+- name: FCCee_vvh_WW_365GeV
+  order: LO
+- name: FCCee_vvh_ZZ_365GeV
+  order: LO
+- name: FCCee_vvh_aZ_365GeV
+  order: LO
+- name: FCCee_vvh_aa_365GeV
+  order: LO
+- name: FCCee_vvh_tautau_365GeV
+  order: LO
+coefficients:
+  OpD:
+    constrain: true
+    value: -0.005
+  Opl1:
+    constrain: true
+    value: -0.0033339999999999997
+  Opl2:
+    constrain: true
+    value: -0.0033339999999999997
+  Opl3:
+    constrain: true
+    value: -0.0033339999999999997
+  Oll1111:
+    constrain: true
+    value: -0.0005557778
+  Oll2222:
+    constrain: true
+    value: -0.0005557778
+  Oll3333:
+    constrain: true
+    value: -0.0005557778
+  Oll1221:
+    constrain: true
+    value: 0.0011115556
+  Oll1331:
+    constrain: true
+    value: 0.0011115556
+  Oll2332:
+    constrain: true
+    value: 0.0011115556
+use_quad: true
+use_t0: false
+use_theory_covmat: false
+rge:
+  init_scale: 5000.0
+  obs_scale: dynamic
+  smeft_accuracy: integrate
+  yukawa: top
+  adm_QCD: false

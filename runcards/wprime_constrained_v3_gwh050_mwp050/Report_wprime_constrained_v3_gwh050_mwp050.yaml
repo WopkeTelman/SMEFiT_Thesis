@@ -1,0 +1,244 @@
+name: Report_wprime_constrained_v3_gwh050_mwp050
+title: 'BSM discovery: WPrimeConstrainedV3Model(gWH=0.5, gWLf=0.1667, gWqf=0.1667,
+  mWp=5.0 TeV) [14 ops] | wprime_constrained_v3_gwh050_mwp050'
+result_IDs:
+- wprime_constrained_v3_gwh050_mwp050_SMonly
+- wprime_constrained_v3_gwh050_mwp050_BSMclosure_SMEFT
+fit_labels:
+- SM
+- BSM ($g_{WH}=0.5$, $m_{W'}=5$ TeV)
+report_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/results/wprime_constrained_v3_gwh050_mwp050/reports
+result_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/results/wprime_constrained_v3_gwh050_mwp050/fits
+summary: false
+summary_only: false
+coefficients_plots:
+  contours_2d:
+    show: true
+    confidence_level: 95
+    dofs_show:
+    - O3pQ3
+    - O3pl1
+    - O3pl2
+    - O3pl3
+    - OQl13
+    - OQl1M
+    - Obp
+    - Oll1111
+    - Oll1122
+    - Oll1221
+    - OpBox
+    - OpQM
+    - Otap
+    - Otp
+  scatter_plot:
+    figsize:
+    - 10
+    - 14
+    x_min: -0.05
+    x_max: 0.05
+    lin_thr: 0.001
+    x_log: false
+  posterior_histograms:
+    nrows: -1
+    disjointed_lists: false
+    bins: 45
+    show_closure_truth: true
+    closure_truth_points:
+    - null
+    - O3pQ3: -0.0008333333333333333
+      O3pl1: -0.0008333333333333333
+      O3pl2: -0.0008333333333333333
+      O3pl3: -0.0008333333333333333
+      OQl13: -0.0011111111111111111
+      OQl1M: 0.0011111111111111111
+      Obp: -6.002165432052166e-05
+      Oll1111: -0.0001388888888888889
+      Oll1122: 0.0001388888888888889
+      Oll1221: -0.0002777777777777778
+      OpBox: -0.00375
+      OpQM: 0.0008333333333333333
+      Otap: -2.5559460452279553e-05
+      Otp: -0.002480703588615627
+    closure_line_color:
+    - tab:gray
+    - red
+    closure_line_style:
+    - --
+    - --
+    show_closure_legend: true
+    closure_line_labels:
+    - ''
+    - UV truth
+  logo: false
+chi2_plots:
+  table: true
+  plot_experiment:
+    figsize:
+    - 12
+    - 10
+  plot_distribution:
+    figsize:
+    - 8
+    - 5
+data_vs_theory:
+  panel: pull
+  include_sm: true
+  include_best_fit: true
+  per_dataset: false
+correlations:
+  thr_show: 0.1
+  fit_list:
+  - wprime_constrained_v3_gwh050_mwp050_BSMclosure_SMEFT
+PCA:
+  table: true
+  plot:
+    heatmap: true
+    figsize:
+    - 16
+    - 8
+  fit_list:
+  - wprime_constrained_v3_gwh050_mwp050_BSMclosure_SMEFT
+fisher:
+  norm: coeff
+  summary_only: false
+  log: true
+  plot:
+    title: true
+    figsize:
+    - 14
+    - 10
+    summary_only: true
+plot: false
+coeff_info:
+  benchmark_smeft:
+  - - O3pQ3
+    - $c_{Hq,33}^{(3)}$
+  - - O3pl1
+    - $c_{Hl,11}^{(3)}$
+  - - O3pl2
+    - $c_{Hl,22}^{(3)}$
+  - - O3pl3
+    - $c_{Hl,33}^{(3)}$
+  - - OQl13
+    - $c_{Ql,13}$
+  - - OQl1M
+    - $c_{Ql,1M}$
+  - - Obp
+    - $c_{HB}$
+  - - Oll1111
+    - $c_{ll,1111}$
+  - - Oll1122
+    - $c_{ll,1122}$
+  - - Oll1221
+    - $c_{ll,1221}$
+  - - OpBox
+    - $c_{H\Box}$
+  - - OpQM
+    - $c_{HQ}^{(1)}$
+  - - Otap
+    - $c_{H\tilde{t}}$
+  - - Otp
+    - $c_{Ht}$
+data_info:
+  91 GeV (Z-pole):
+  - - FCCee_Zdata
+    - Z pole data
+  - - FCCee_Wwidth
+    - W width
+  161 GeV (WW thr.):
+  - - FCCee_ww_161GeV
+    - WW @ 161 GeV
+  - - FCCee_Brw
+    - Br(W) @ 161 GeV
+  240 GeV:
+  - - FCCee_ww_240GeV
+    - WW @ 240 GeV
+  - - FCCee_ee_240GeV
+    - ee @ 240 GeV
+  - - FCCee_ee_Afb_240GeV
+    - ee Afb @ 240 GeV
+  - - FCCee_Rb_240GeV
+    - Rb @ 240 GeV
+  - - FCCee_Rc_240GeV
+    - Rc @ 240 GeV
+  - - FCCee_Rmu_240GeV
+    - Rmu @ 240 GeV
+  - - FCCee_Rtau_240GeV
+    - Rtau @ 240 GeV
+  - - FCCee_bb_Afb_240GeV
+    - bb Afb @ 240 GeV
+  - - FCCee_cc_Afb_240GeV
+    - cc Afb @ 240 GeV
+  - - FCCee_mumu_Afb_240GeV
+    - mumu Afb @ 240 GeV
+  - - FCCee_sigmaHad_240GeV
+    - sigma_had @ 240 GeV
+  - - FCCee_tautau_Afb_240GeV
+    - tautau Afb @ 240 GeV
+  - - FCCee_zh_240GeV
+    - ZH @ 240 GeV
+  - - FCCee_zh_WW_240GeV
+    - ZH->WW @ 240 GeV
+  - - FCCee_zh_ZZ_240GeV
+    - ZH->ZZ @ 240 GeV
+  - - FCCee_zh_aZ_240GeV
+    - ZH->aZ @ 240 GeV
+  - - FCCee_zh_aa_240GeV
+    - ZH->aa @ 240 GeV
+  - - FCCee_zh_tautau_240GeV
+    - ZH->tautau @ 240 GeV
+  - - FCCee_zh_mumu_240GeV
+    - ZH->mumu @ 240 GeV
+  - - FCCee_240_H_HADR
+    - H hadronic @ 240 GeV
+  365 GeV:
+  - - FCCee_ww_365GeV
+    - WW @ 365 GeV
+  - - FCCee_ee_365GeV
+    - ee @ 365 GeV
+  - - FCCee_ee_Afb_365GeV
+    - ee Afb @ 365 GeV
+  - - FCCee_Rb_365GeV
+    - Rb @ 365 GeV
+  - - FCCee_Rc_365GeV
+    - Rc @ 365 GeV
+  - - FCCee_Rmu_365GeV
+    - Rmu @ 365 GeV
+  - - FCCee_Rtau_365GeV
+    - Rtau @ 365 GeV
+  - - FCCee_bb_Afb_365GeV
+    - bb Afb @ 365 GeV
+  - - FCCee_cc_Afb_365GeV
+    - cc Afb @ 365 GeV
+  - - FCCee_mumu_Afb_365GeV
+    - mumu Afb @ 365 GeV
+  - - FCCee_sigmaHad_365GeV
+    - sigma_had @ 365 GeV
+  - - FCCee_tautau_Afb_365GeV
+    - tautau Afb @ 365 GeV
+  - - FCCee_zh_365GeV
+    - ZH @ 365 GeV
+  - - FCCee_zh_WW_365GeV
+    - ZH->WW @ 365 GeV
+  - - FCCee_zh_ZZ_365GeV
+    - ZH->ZZ @ 365 GeV
+  - - FCCee_zh_aZ_365GeV
+    - ZH->aZ @ 365 GeV
+  - - FCCee_zh_aa_365GeV
+    - ZH->aa @ 365 GeV
+  - - FCCee_zh_tautau_365GeV
+    - ZH->tautau @ 365 GeV
+  - - FCCee_zh_mumu_365GeV
+    - ZH->mumu @ 365 GeV
+  - - FCCee_365_H_HADR
+    - H hadronic @ 365 GeV
+  - - FCCee_vvh_WW_365GeV
+    - vvH->WW @ 365 GeV
+  - - FCCee_vvh_ZZ_365GeV
+    - vvH->ZZ @ 365 GeV
+  - - FCCee_vvh_aZ_365GeV
+    - vvH->aZ @ 365 GeV
+  - - FCCee_vvh_aa_365GeV
+    - vvH->aa @ 365 GeV
+  - - FCCee_vvh_tautau_365GeV
+    - vvH->tautau @ 365 GeV

@@ -1,0 +1,180 @@
+name: Report_wprime_constrained_v3_gwh050_mwp050_UVcoup
+title: W' UV coupling fit — wprime_constrained_v3_gwh050_mwp050
+result_IDs:
+- wprime_constrained_v3_gwh050_mwp050_UVcoup
+fit_labels:
+- BSM UV closure (wprime_constrained_v3_gwh050_mwp050)
+report_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/results/wprime_constrained_v3_gwh050_mwp050/reports
+result_path: /data/theorie/wtelman/wprime_explicit_uv_closure_vs_sm/fullpipeline/results/wprime_constrained_v3_gwh050_mwp050/fits
+summary: false
+summary_only: false
+coefficients_plots:
+  contours_2d:
+    show: true
+    confidence_level: 95
+    dofs_show:
+    - gWH
+    - gWLf11
+    - gWLf22
+    - gWLf33
+    - gWqf33
+  posterior_histograms:
+    nrows: -1
+    disjointed_lists: false
+    bins: 60
+    show_closure_truth: true
+    closure_truth_points:
+    - gWH: 0.5
+      gWLf11: 0.16666666666666666
+      gWLf22: 0.16666666666666666
+      gWLf33: 0.16666666666666666
+      gWqf33: 0.16666666666666666
+    closure_line_color:
+    - red
+    closure_line_style:
+    - --
+    show_closure_legend: true
+    closure_line_labels:
+    - UV truth (wprime_constrained_v3_gwh050_mwp050)
+  logo: false
+chi2_plots:
+  table: true
+  plot_experiment:
+    figsize:
+    - 12
+    - 8
+  plot_distribution:
+    figsize:
+    - 8
+    - 5
+fisher:
+  norm: coeff
+  summary_only: false
+  log: false
+  plot:
+    title: true
+    figsize:
+    - 10
+    - 6
+    summary_only: true
+data_vs_theory:
+  panel: pull
+  include_sm: true
+  include_best_fit: true
+  per_dataset: false
+plot: false
+coeff_info:
+  default:
+  - - gWH
+    - $g_{WH}$
+  - - gWLf11
+    - $g_{WLf,11}$
+  - - gWLf22
+    - $g_{WLf,22}$
+  - - gWLf33
+    - $g_{WLf,33}$
+  - - gWqf33
+    - $g_{Wqf,33}$
+data_info:
+  91 GeV (Z-pole):
+  - - FCCee_Zdata
+    - Z pole data
+  - - FCCee_Wwidth
+    - W width
+  161 GeV (WW thr.):
+  - - FCCee_ww_161GeV
+    - WW @ 161 GeV
+  - - FCCee_Brw
+    - Br(W) @ 161 GeV
+  240 GeV:
+  - - FCCee_ww_240GeV
+    - WW @ 240 GeV
+  - - FCCee_ee_240GeV
+    - ee @ 240 GeV
+  - - FCCee_ee_Afb_240GeV
+    - ee Afb @ 240 GeV
+  - - FCCee_Rb_240GeV
+    - Rb @ 240 GeV
+  - - FCCee_Rc_240GeV
+    - Rc @ 240 GeV
+  - - FCCee_Rmu_240GeV
+    - Rmu @ 240 GeV
+  - - FCCee_Rtau_240GeV
+    - Rtau @ 240 GeV
+  - - FCCee_bb_Afb_240GeV
+    - bb Afb @ 240 GeV
+  - - FCCee_cc_Afb_240GeV
+    - cc Afb @ 240 GeV
+  - - FCCee_mumu_Afb_240GeV
+    - mumu Afb @ 240 GeV
+  - - FCCee_sigmaHad_240GeV
+    - sigma_had @ 240 GeV
+  - - FCCee_tautau_Afb_240GeV
+    - tautau Afb @ 240 GeV
+  - - FCCee_zh_240GeV
+    - ZH @ 240 GeV
+  - - FCCee_zh_WW_240GeV
+    - ZH->WW @ 240 GeV
+  - - FCCee_zh_ZZ_240GeV
+    - ZH->ZZ @ 240 GeV
+  - - FCCee_zh_aZ_240GeV
+    - ZH->aZ @ 240 GeV
+  - - FCCee_zh_aa_240GeV
+    - ZH->aa @ 240 GeV
+  - - FCCee_zh_tautau_240GeV
+    - ZH->tautau @ 240 GeV
+  - - FCCee_zh_mumu_240GeV
+    - ZH->mumu @ 240 GeV
+  - - FCCee_240_H_HADR
+    - H hadronic @ 240 GeV
+  365 GeV:
+  - - FCCee_ww_365GeV
+    - WW @ 365 GeV
+  - - FCCee_ee_365GeV
+    - ee @ 365 GeV
+  - - FCCee_ee_Afb_365GeV
+    - ee Afb @ 365 GeV
+  - - FCCee_Rb_365GeV
+    - Rb @ 365 GeV
+  - - FCCee_Rc_365GeV
+    - Rc @ 365 GeV
+  - - FCCee_Rmu_365GeV
+    - Rmu @ 365 GeV
+  - - FCCee_Rtau_365GeV
+    - Rtau @ 365 GeV
+  - - FCCee_bb_Afb_365GeV
+    - bb Afb @ 365 GeV
+  - - FCCee_cc_Afb_365GeV
+    - cc Afb @ 365 GeV
+  - - FCCee_mumu_Afb_365GeV
+    - mumu Afb @ 365 GeV
+  - - FCCee_sigmaHad_365GeV
+    - sigma_had @ 365 GeV
+  - - FCCee_tautau_Afb_365GeV
+    - tautau Afb @ 365 GeV
+  - - FCCee_zh_365GeV
+    - ZH @ 365 GeV
+  - - FCCee_zh_WW_365GeV
+    - ZH->WW @ 365 GeV
+  - - FCCee_zh_ZZ_365GeV
+    - ZH->ZZ @ 365 GeV
+  - - FCCee_zh_aZ_365GeV
+    - ZH->aZ @ 365 GeV
+  - - FCCee_zh_aa_365GeV
+    - ZH->aa @ 365 GeV
+  - - FCCee_zh_tautau_365GeV
+    - ZH->tautau @ 365 GeV
+  - - FCCee_zh_mumu_365GeV
+    - ZH->mumu @ 365 GeV
+  - - FCCee_365_H_HADR
+    - H hadronic @ 365 GeV
+  - - FCCee_vvh_WW_365GeV
+    - vvH->WW @ 365 GeV
+  - - FCCee_vvh_ZZ_365GeV
+    - vvH->ZZ @ 365 GeV
+  - - FCCee_vvh_aZ_365GeV
+    - vvH->aZ @ 365 GeV
+  - - FCCee_vvh_aa_365GeV
+    - vvH->aa @ 365 GeV
+  - - FCCee_vvh_tautau_365GeV
+    - vvH->tautau @ 365 GeV
