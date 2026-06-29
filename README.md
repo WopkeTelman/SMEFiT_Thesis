@@ -23,6 +23,8 @@ Analysis code and results for the MSc thesis *Discovering New Physics at the FCC
 | `fingerprint_comparison.py` | W' vs Z' signal fingerprint comparison |
 | `plot_scan_l1_from_table.py` | Theory-covariance comparison scan plot |
 | `plot_zprime_discovery_extended.py` | Extended Z' discovery reach plot |
+| `theory_vs_data.py` | Data vs theory comparison plot |
+| `zdata_comparison.py` | Z data comparison plot |
 
 ---
 
@@ -40,21 +42,19 @@ Analysis code and results for the MSc thesis *Discovering New Physics at the FCC
 
 ## Figures
 
-| File | Script | Description |
-|------|--------|-------------|
-| `eft_closure_histograms.png` | `smefit R` | EFT posterior histograms — W' g=0.50, m=1 TeV |
-| `eft_post_14.png` | `smefit R` | EFT posteriors — 14-op constrained W', m=5 TeV |
-| `uv_closure_posteriors.png` | `smefit R` | UV coupling posteriors — W' g=0.50, m=1 TeV |
-| `pull_eft14.png` | `ns_l1_closure.py --smeft` | L1 pull distribution — 14-op free EFT |
-| `Pull_Uv.png` | `ns_l1_closure.py` | L1 pull distribution — UV coupling |
-| `fisher_uv_wprime.png` | `fisher_uv.py` | UV Fisher matrix by √s tier — W' g=0.50, m=5 TeV |
-| `discovery_reach_wprime.png` | `run_pipeline.py --scan` | W' discovery reach in (g, m) plane |
-| `discovery_reach_theorycov.png` | `plot_scan_l1_from_table.py` | ⚠️ Not yet generated — TC aggressive vs no TC |
-| `data_vs_theory.png` | `smefit R` | ⚠️ Not yet generated — boundary point g=1.28, m=9.3 TeV |
-| `fingerprint_wprime_zprime.png` | `fingerprint_comparison.py` | W' vs Z' signal fingerprint |
-| `Zprime_gZH050.png` | `smefit R` | Z' EFT posteriors — g=0.50, m=5 TeV |
-| `robustness_wprime_zprime.png` | `smefit R` | Cross-injection: W' data fit with Z' model |
-| `discovery_reach_zprime.png` | `plot_zprime_discovery_extended.py` | Z' discovery reach |
+- `eft_closure_histograms.png`
+- `eft_post_14.png`
+- `uv_closure_posteriors.png`
+- `pull_eft14.png`
+- `Pull_Uv.png`
+- `fisher_uv_wprime.png`
+- `discovery_reach_wprime.png`
+- `discovery_reach_theorycov.png`
+- `data_vs_theory.png`
+- `fingerprint_wprime_zprime.png`
+- `Zprime_gZH050.png`
+- `robustness_wprime_zprime.png`
+- `discovery_reach_zprime.png`
 
 ---
 
