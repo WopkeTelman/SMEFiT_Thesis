@@ -45,7 +45,7 @@ sys.path.insert(0, str(PIPELINE / "scripts"))
 sys.path.insert(0, str(PIPELINE))
 
 from models.wprime_constrained import WPrimeConstrainedModel
-from models.zprime_constrained import ZPrimeConstrainedModel
+from models.zprime2_constrained import ZPrimeV2ConstrainedModel as ZPrimeConstrainedModel
 
 # Import the shared K/Ci builder from run_pipeline so both models are
 # evaluated against the exact same FCC-ee dataset and covariance.
@@ -61,9 +61,10 @@ OP_LABELS = {
     "Obp":     r"$\mathcal{O}_{bW}$",
     "Oll1111": r"$\mathcal{O}_{ll}^{1111}$",
     "Oll1122": r"$\mathcal{O}_{ll}^{1122}$",
+    "Oll1133": r"$\mathcal{O}_{ll}^{1133}$",
     "Oll1221": r"$\mathcal{O}_{ll}^{1221}$",
     "Oll1331": r"$\mathcal{O}_{ll}^{1331}$",
-    "OpBox":   r"$\mathcal{O}_{\varphi,\mathrm{box}}$",
+    "OpBox":   r"$\mathcal{O}_{\varphi\text{□}}$",
     "OpQM":    r"$\mathcal{O}_{\varphi Q}^{(-)}$",
     "Otap":    r"$\mathcal{O}_{t\varphi}$",
     "Otp":     r"$\mathcal{O}_{tW}$",
@@ -108,17 +109,21 @@ def compute_fingerprint(model, K, Ci):
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--gstar", type=float, default=0.18)
+    p.add_argument("--gstar", type=float, default=0.18,
+                   help="W' coupling gWH (also sets gZH if --gZH not given)")
+    p.add_argument("--gZH",   type=float, default=None,
+                   help="Z' Higgs coupling (default: same as --gstar)")
     p.add_argument("--mWp",   type=float, default=10.0)
     p.add_argument("--mZp",   type=float, default=10.0)
     p.add_argument("--gZl",   type=float, default=None,
-                   help="Z' lepton coupling (default: same as --gstar)")
+                   help="Z' lepton coupling (default: gZH/3)")
     args = p.parse_args()
 
-    g   = args.gstar
-    mWp = args.mWp
-    mZp = args.mZp
-    gZl = args.gZl if args.gZl is not None else g
+    g    = args.gstar
+    gZH  = args.gZH if args.gZH is not None else g
+    mWp  = args.mWp
+    mZp  = args.mZp
+    gZl  = args.gZl if args.gZl is not None else gZH / 3.0
 
     # W' gauge-universal scenario: gWLf = gWqf = gWH / 3.
     # Setting all couplings equal would overestimate lepton/quark operators by 3x.
@@ -126,7 +131,7 @@ def main():
     wp_model = WPrimeConstrainedModel(
         gWH=g, gWLf11=gWLf, gWLf22=gWLf, gWLf33=gWLf, gWqf33=gWLf, mWp=mWp
     )
-    zp_model = ZPrimeConstrainedModel(gZH=g, gZl=gZl, mZp=mZp)
+    zp_model = ZPrimeConstrainedModel(gZH=gZH, gZl=gZl, mZp=mZp)
 
     ops_wp = wp_model.OPERATORS
     ops_zp = zp_model.OPERATORS
@@ -177,7 +182,7 @@ def main():
 
     print(f"\nW' model: gWH={g}, gWLf=gWqf={gWLf:.4f}, mWp={mWp} TeV")
     print(f"  lambda={lam_wp:.2f}  sqrt(lambda)={sigma_wp:.2f}")
-    print(f"Z' model: gZH={g}, gZl={gZl:.4f}, mZp={mZp} TeV")
+    print(f"Z' model: gZH={gZH}, gZl={gZl:.4f}, mZp={mZp} TeV")
     print(f"  lambda={lam_zp:.2f}  sqrt(lambda)={sigma_zp:.2f}")
     print(f"\nData-space cosine similarity:  cos(theta) = {cos_sim:.4f}")
     print(f"Angle (data space):            theta = {angle_deg:.1f} deg")
@@ -222,7 +227,7 @@ def main():
            label=fr"W' ($g_{{WH}}={g}$, $g_{{Wf}}={gWLf:.3f}$, "
                  fr"$m_{{W'}}={mWp:.0f}$ TeV, $\sqrt{{\lambda_{{W'}}}}={sigma_wp:.1f}$)")
     ax.bar(x + width/2, n_zp_full, width, color="#d62728", zorder=3,
-           label=fr"Z' ($g_{{ZH}}=g_{{Zl}}={g}$, "
+           label=fr"Z' ($g_{{ZH}}={gZH}$, $g_{{Zl}}={gZl:.4f}$, "
                  fr"$m_{{Z'}}={mZp:.0f}$ TeV, $\sqrt{{\lambda_{{Z'}}}}={sigma_zp:.1f}$)")
 
     ax.axhline(0, color="black", lw=0.8)
@@ -249,7 +254,7 @@ def main():
 
     out_dir = PIPELINE / "results" / "fingerprint_comparison"
     out_dir.mkdir(parents=True, exist_ok=True)
-    tag = f"gwh{int(g*100):03d}_gzl{int(gZl*100):03d}_mwp{int(mWp*10):03d}_mzp{int(mZp*10):03d}"
+    tag = f"gwh{int(g*100):03d}_gzh{int(gZH*100):03d}_gzl{int(gZl*100):03d}_mwp{int(mWp*10):03d}_mzp{int(mZp*10):03d}"
     for ext in ["png", "pdf"]:
         path = out_dir / f"fingerprint_{tag}.{ext}"
         plt.savefig(path, dpi=150, bbox_inches="tight")

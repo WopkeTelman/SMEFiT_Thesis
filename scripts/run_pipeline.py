@@ -354,6 +354,17 @@ def make_uv_runcard(result_id, data_path, model, use_quad=True):
     rc["frac_remain"]         = 0.01
     return rc
 
+def _model_legend_label(model):
+    """Return a clean LaTeX legend label for the BSM model, e.g. 'BSM ($g_{ZH}=0.5$, $m_{Z'}=5$ TeV)'."""
+    if hasattr(model, "gZH"):
+        return (fr"BSM ($g_{{ZH}} = {model.gZH}$, "
+                fr"$m_{{Z^{{\\prime}}}} = {model.mZp}$ TeV)")
+    if hasattr(model, "gWH"):
+        return (fr"BSM ($g_{{WH}} = {model.gWH}$, "
+                fr"$m_{{W^{{\\prime}}}} = {model.mWp}$ TeV)")
+    return "BSM"
+
+
 def make_report_runcard(tag, proj_dir, fit_dir, report_dir, model, free_ops=None):
     """
     Build a smefit report runcard (smefit R) for this pipeline run.
@@ -373,8 +384,8 @@ def make_report_runcard(tag, proj_dir, fit_dir, report_dir, model, free_ops=None
     # correlations, PCA, histograms) would fail or be misleading if it's included.
     # UV fit significance is already captured in Step 5's profile likelihood table.
     result_ids, fit_labels = [], []
-    for fid, label in [(sm_id,  "SM-only hypothesis"),
-                       (bsm_id, f"SMEFT fit ({tag})")]:
+    for fid, label in [(sm_id,  "SM"),
+                       (bsm_id, _model_legend_label(model))]:
         if os.path.exists(f"{fit_dir}/{fid}/fit_results.json"):
             result_ids.append(fid)
             fit_labels.append(label)
@@ -389,7 +400,7 @@ def make_report_runcard(tag, proj_dir, fit_dir, report_dir, model, free_ops=None
     # Truth overlay for posterior histograms: None for SM-only, truth for others
     truth_point = {op: float(truth.get(op, 0.0)) for op in ops}
     closure_truth  = [None if fid == sm_id else truth_point  for fid in result_ids]
-    closure_labels = [""   if fid == sm_id else f"UV truth: {model}" for fid in result_ids]
+    closure_labels = [""   if fid == sm_id else "UV truth"           for fid in result_ids]
     closure_colors = ["tab:gray" if fid == sm_id else "red"  for fid in result_ids]
     closure_styles = ["--"] * len(result_ids)
 
@@ -516,7 +527,7 @@ def make_uv_report_runcard(tag, fit_dir, report_dir, model):
         "name":        f"Report_{tag}_UVcoup",
         "title":       f"W' UV coupling fit — {tag}",
         "result_IDs":  [uv_id],
-        "fit_labels":  [f"BSM UV closure ({tag})"],
+        "fit_labels":  [_model_legend_label(model)],
         "report_path": report_dir,
         "result_path": fit_dir,
         "summary":     False,
@@ -539,7 +550,7 @@ def make_uv_report_runcard(tag, fit_dir, report_dir, model):
                 "closure_line_color":  ["red"],
                 "closure_line_style":  ["--"],
                 "show_closure_legend": True,
-                "closure_line_labels": [f"UV truth ({tag})"],
+                "closure_line_labels": ["UV truth"],
             },
             "logo": False,
         },
@@ -1834,7 +1845,10 @@ def _plot_discovery_region(results, coupling_key, mass_key,
                       linestyles=[":"])
     ax.clabel(cs5f, fmt=r"$5\sigma$ (SMEFT)", fontsize=9, inline=True)
 
-    model_label = tag_prefix.replace("wprime", "W'").replace("zprime", "Z'")
+    model_label = (tag_prefix.replace("wprime_constrained", "W'")
+                             .replace("zprime2", "Z'")
+                             .replace("zprime", "Z'")
+                             .replace("wprime", "W'"))
     ax.set_xlabel(f"$m_{{\\rm {model_label}}}$ [TeV]", fontsize=13)
     ax.set_ylabel(f"$|{coupling_key}|$", fontsize=13)
     ax.set_title(f"FCC-ee discovery reach: {model_label}", fontsize=12)
@@ -2289,7 +2303,7 @@ def parse_args():
         description="FCC-ee BSM discovery pipeline — single point or scan",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,
     )
-    p.add_argument("--model", choices=["wprime", "zprime", "wprime_constrained", "wprime_constrained_v2", "wprime_constrained_v3", "zprime_constrained", "comphiggs", "wprime_universal", "wprime_1g"], required=True,
+    p.add_argument("--model", choices=["wprime", "zprime", "zprime2", "wprime_constrained", "wprime_constrained_v2", "wprime_constrained_v3", "zprime_constrained", "comphiggs", "wprime_universal", "wprime_1g"], required=True,
                    help="UV model to USE FOR FITTING (injection model set by --inject-tag)")
     p.add_argument("--tag",   default=None, help="Run tag (auto if omitted)")
     p.add_argument("--inject-tag", default=None,
@@ -2350,6 +2364,7 @@ if __name__ == "__main__":
     from models.wprime_universal import WPrimeUniversalModel
     from models.wprime_1g import WPrime1gModel
     from models.zprime import ZPrimeModel
+    from models.zprime2 import ZPrimeModel as ZPrimeV2Model
     from models.zprime_constrained import ZPrimeConstrainedModel
     from models.comphiggs import CompHiggsModel
 
@@ -2434,6 +2449,17 @@ if __name__ == "__main__":
         coupling_key, mass_key = "gZH", "mZp"
         model_cls   = ZPrimeModel
         # Scan grid for Z': scale around the injected point
+        g0, m0 = args.gZH, args.mZp
+        coupling_grid = sorted(set(round(v, 4) for v in np.linspace(g0 * 0.25, g0 * 3.0, 9).tolist()))
+        mass_grid     = sorted(set(round(v, 2) for v in np.linspace(m0 * 0.1,  m0 * 3.0, 11).tolist()))
+        scan_params   = {**base_params}
+
+    elif args.model == "zprime2":
+        model       = ZPrimeV2Model(gZH=args.gZH, gZl=args.gZl, mZp=args.mZp)
+        base_params = {"gZH": args.gZH, "gZl": args.gZl, "mZp": args.mZp}
+        tag         = args.tag or f"zprime2_gzh{int(args.gZH*100):03d}_mzp{int(args.mZp*10):03d}"
+        coupling_key, mass_key = "gZH", "mZp"
+        model_cls   = ZPrimeV2Model
         g0, m0 = args.gZH, args.mZp
         coupling_grid = sorted(set(round(v, 4) for v in np.linspace(g0 * 0.25, g0 * 3.0, 9).tolist()))
         mass_grid     = sorted(set(round(v, 2) for v in np.linspace(m0 * 0.1,  m0 * 3.0, 11).tolist()))

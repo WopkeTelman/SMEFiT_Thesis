@@ -110,6 +110,15 @@ def _build_model(model_name, **kwargs):
         return ZPrimeConstrainedModel(gZH=kwargs["gZH"],
                                       gZl=kwargs.get("gZl", kwargs["gZH"] / 3),
                                       mZp=kwargs["mZp"])
+    if model_name == "zprime2":
+        from models.zprime2 import ZPrimeModel as ZPrimeV2Model
+        return ZPrimeV2Model(gZH=kwargs["gZH"], gZl=kwargs.get("gZl", kwargs["gZH"] / 3),
+                             mZp=kwargs["mZp"])
+    if model_name == "zprime2_constrained":
+        from models.zprime2_constrained import ZPrimeV2ConstrainedModel
+        return ZPrimeV2ConstrainedModel(gZH=kwargs["gZH"],
+                                        gZl=kwargs.get("gZl", kwargs["gZH"] / 3),
+                                        mZp=kwargs["mZp"])
     raise ValueError(f"Unknown model: {model_name!r}")
 
 
@@ -121,6 +130,8 @@ def _parse_tag(tag):
         (r"^(wprime_constrained)_gwh(\d+)_mwp(\d+)",    "gWH", "mWp"),
         (r"^(wprime_universal)_gwh(\d+)_mwp(\d+)",      "gWH", "mWp"),
         (r"^(wprime)_gwh(\d+)_mwp(\d+)",                "gWH", "mWp"),
+        (r"^(zprime2_constrained)_gzh(\d+)_mzp(\d+)",  "gZH", "mZp"),
+        (r"^(zprime2)_gzh(\d+)_mzp(\d+)",              "gZH", "mZp"),
         (r"^(zprime_constrained)_gzh(\d+)_mzp(\d+)",   "gZH", "mZp"),
         (r"^(zprime)_gzh(\d+)_mzp(\d+)",               "gZH", "mZp"),
     ]
@@ -496,7 +507,8 @@ def main():
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--tag",      help="Pipeline run tag, e.g. wprime_gwh050_mwp100")
     ap.add_argument("--model",    choices=["wprime_1g", "wprime", "wprime_constrained",
-                                           "wprime_universal", "zprime", "zprime_constrained"])
+                                           "wprime_universal", "zprime", "zprime_constrained",
+                                           "zprime2", "zprime2_constrained"])
     ap.add_argument("--g",    type=float, help="universal coupling for wprime_1g")
     ap.add_argument("--gWH",  type=float)
     ap.add_argument("--mWp",  type=float)
