@@ -1,22 +1,19 @@
 """
-models/wprime_constrained_v2.py
+models/wprime_constrained_v3.py
 
-W' boson model — empirically constrained operator set.
+W' boson model — 14 truly constrained operators.
 
-Identical to WPrimeModel but with the 9 operators that are prior-dominated
-in free-EFT NS fits (std of pulls ≤ 0.3 across 50 L1 replicas at
-gWH=0.50, mWp=5 TeV) removed. Determined from ns_l1_closure.py --smeft run.
+Derived from WPrimeConstrainedModel (16 ops) by removing the 2 operators
+that remained prior-dominated in the free-EFT NS closure (50 L1 replicas,
+gWH=0.50, mWp=5 TeV): Oll1133 and Oll1331 (std of pulls ≤ 0.3).
 
-Removed (prior-dominated in free-EFT fit):
-    OQQ1, OQQ8          — 4-quark (3rd gen), no pure quark process at FCC-ee
-    Oll1133, Oll1331    — 1st–3rd gen lepton mixing, flat in free-EFT
-    Oll2222, Oll2233,
-    Oll2332, Oll3333    — 4-muon/tau, not independently constrained
-    Op                  — Higgs phi^4 kinetic, flat at FCC-ee energies
+Removed vs WPrimeConstrainedModel:
+    Oll1133, Oll1331    — 1st–3rd gen lepton mixing, prior-dominated in free-EFT fit
+                          despite passing Fisher matrix test in UV-coupled context
 
-Kept (18 constrained operators, empirically determined):
+Kept (14 constrained operators):
     O3pQ3, O3pl1, O3pl2, O3pl3
-    OQl13, OQl1M, OQl23, OQl2M, OQl33, OQl3M
+    OQl13, OQl1M
     Obp, Oll1111, Oll1122, Oll1221
     OpBox, OpQM, Otap, Otp
 """
@@ -27,14 +24,14 @@ from models.wprime import WPrimeModel
 
 
 @dataclass
-class WPrimeConstrainedV2Model(WPrimeModel):
+class WPrimeConstrainedV3Model(WPrimeModel):
     """
-    W' model with 18 empirically constrained operators (free-EFT NS closure).
+    W' model with 14 empirically constrained operators (free-EFT NS closure, v3).
     """
 
     OPERATORS = [
         "O3pQ3", "O3pl1", "O3pl2", "O3pl3",
-        "OQl13", "OQl1M", "OQl23", "OQl2M", "OQl33", "OQl3M",
+        "OQl13", "OQl1M",
         "Obp", "Oll1111", "Oll1122", "Oll1221",
         "OpBox", "OpQM", "Otap", "Otp",
     ]
@@ -51,5 +48,5 @@ class WPrimeConstrainedV2Model(WPrimeModel):
                 if k in self.OPERATORS or k in self.uv_param_names() + ["mWp_TeV"]}
 
     def __repr__(self):
-        return (f"WPrimeConstrainedV2Model(gWH={self.gWH}, gWLf={self.gWLf11:.4f}, "
-                f"gWqf={self.gWqf33:.4f}, mWp={self.mWp} TeV) [18 ops]")
+        return (f"WPrimeConstrainedV3Model(gWH={self.gWH}, gWLf={self.gWLf11:.4f}, "
+                f"gWqf={self.gWqf33:.4f}, mWp={self.mWp} TeV) [14 ops]")
